@@ -1794,7 +1794,7 @@ class BertForSeq2SeqDecoder(PreTrainedBertModel):
                 prediction_scores, dim=-1)
             if prediction_scores_cp != None:
                 log_scores_cp = torch.nn.functional.log_softmax(
-                    prediction_scores_cp, dim=-1)
+                    prediction_scores_cp, dim=-1)*(23E-4)
                 log_scores = log_scores + log_scores_cp
             if forbid_word_mask is not None:
                 log_scores += (forbid_word_mask * -10000.0)
